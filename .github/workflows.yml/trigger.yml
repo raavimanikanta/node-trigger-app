@@ -1,10 +1,16 @@
-name: Triggered workflow
+name: Deploy
 on:
-  repository_dispatch:
-    types: [trigger-another-repo]
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
 jobs:
-  my-job:
+  build:
+    name: Run API
     runs-on: ubuntu-latest
     steps:
-      - name: Run some command
-        run: echo "Hello, World!"
+      - name: Build API
+        run: |
+          echo "Build API"
+          sleep 10s
